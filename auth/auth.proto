@@ -8,10 +8,10 @@ service AuthService {
 }
 
 message RequestAuthorizationPayload {
-    string email = 1;
+    string access_token = 1;
 }
 
 message ResponseAuthorizationPayload {
-    string access_token = 1;
+    bool status=1 ;
     string errors = 2;
 }
