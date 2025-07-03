@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package carvu;
+
+service PDFService {
+    rpc RequestPDFParsing (RequestPDFParsingPayload) returns (ResponsePDFParsingPayload) {}
+}
+
+message RequestPDFParsingPayload {
+    string url = 1;
+}
+
+message ResponsePDFParsingPayload {
+    bool status = 1;
+    string errors = 2;
+    optional CarfaxData data = 3;
+}
+
+message CarfaxData {
+    string vin = 1;
+    string model = 2;
+    string odometer = 3;
+    string country = 4;
+    string registration = 5;
+    bool is_stolen = 6;
+    repeated Incident accidents = 7;
+    repeated ServiceRecord service_records = 8;
+    repeated DetailedHistory detailed_history = 9;
+    repeated Recall recalls = 10;
+}
+
+message Incident {
+    string date = 1;
+    string location = 2;
+    repeated string amount = 3;
+    repeated string details = 4;
+}
+
+message ServiceRecord {
+    string date = 1;
+    string odometer = 2;
+    repeated string source = 3;
+    ServiceDetails details = 4;
+}
+
+message ServiceDetails {
+    repeated string vehicle_serviced = 1;
+}
+
+
+message DetailedHistory {
+    string date = 1;
+    string odometer = 2;
+    repeated string source = 3;
+    string record_type = 4;
+    repeated string string_details = 6;
+}
+
+
+message Recall {
+    string recall_number = 1;
+    string recall_date = 2;
+}
