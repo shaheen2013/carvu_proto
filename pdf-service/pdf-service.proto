@@ -8,6 +8,7 @@ service PDFService {
 
 message RequestPDFParsingPayload {
     string url = 1;
+    bool local = 2;
 }
 
 message ResponsePDFParsingPayload {
@@ -53,7 +54,7 @@ message DetailedHistory {
     string odometer = 2;
     repeated string source = 3;
     string record_type = 4;
-    repeated string string_details = 6;
+    repeated string details = 6;
 }
 
 
